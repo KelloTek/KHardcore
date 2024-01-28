@@ -125,32 +125,32 @@ public final class KHardcore extends LayeredPlugin {
         if(entity.getType() == EntityType.BEE || entity.getType() == EntityType.BLAZE || entity.getType() == EntityType.CAVE_SPIDER || entity.getType() == EntityType.CREEPER || entity.getType() == EntityType.DOLPHIN || entity.getType() == EntityType.DROWNED || entity.getType() == EntityType.ENDERMAN || entity.getType() == EntityType.ENDERMITE || entity.getType() == EntityType.EVOKER || entity.getType() == EntityType.FOX || entity.getType() == EntityType.GOAT || entity.getType() == EntityType.GUARDIAN || entity.getType() == EntityType.HOGLIN || entity.getType() == EntityType.HUSK || entity.getType() == EntityType.IRON_GOLEM || entity.getType() == EntityType.MAGMA_CUBE || entity.getType() == EntityType.PANDA || entity.getType() == EntityType.PHANTOM || entity.getType() == EntityType.PIGLIN || entity.getType() == EntityType.PIGLIN_BRUTE || entity.getType() == EntityType.PILLAGER || entity.getType() == EntityType.POLAR_BEAR || entity.getType() == EntityType.RAVAGER || entity.getType() == EntityType.SILVERFISH || entity.getType() == EntityType.SKELETON || entity.getType() == EntityType.SLIME || entity.getType() == EntityType.SPIDER || entity.getType() == EntityType.STRAY || entity.getType() == EntityType.VEX || entity.getType() == EntityType.VINDICATOR || entity.getType() == EntityType.WITCH || entity.getType() == EntityType.WITHER_SKELETON || entity.getType() == EntityType.WOLF || entity.getType() == EntityType.ZOGLIN || entity.getType() == EntityType.ZOMBIE || entity.getType() == EntityType.ZOMBIE_VILLAGER || entity.getType() == EntityType.ZOMBIFIED_PIGLIN) {
             Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getModifiers().forEach(attributeModifier -> Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).removeModifier(attributeModifier));
 
-            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_health" , health, AttributeModifier.Operation.ADD_NUMBER));
+            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_health" , health, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
             entity.setHealth(Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue());
 
             Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).getModifiers().forEach(attributeModifier -> Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).removeModifier(attributeModifier));
-            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_attack_damage" , attack, AttributeModifier.Operation.ADD_NUMBER));
+            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_attack_damage" , attack, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
         }
 
         if(entity.getType() == EntityType.ALLAY || entity.getType() == EntityType.AXOLOTL || entity.getType() == EntityType.BAT || entity.getType() == EntityType.CAMEL || entity.getType() == EntityType.CAT || entity.getType() == EntityType.CHICKEN || entity.getType() == EntityType.COD || entity.getType() == EntityType.COW || entity.getType() == EntityType.DONKEY || entity.getType() == EntityType.FROG || entity.getType() == EntityType.GHAST || entity.getType() == EntityType.GLOW_SQUID || entity.getType() == EntityType.HORSE || entity.getType() == EntityType.LLAMA || entity.getType() == EntityType.MUSHROOM_COW || entity.getType() == EntityType.MULE || entity.getType() == EntityType.OCELOT || entity.getType() == EntityType.PARROT || entity.getType() == EntityType.PUFFERFISH || entity.getType() == EntityType.RABBIT || entity.getType() == EntityType.PIG || entity.getType() == EntityType.SALMON || entity.getType() == EntityType.SHEEP || entity.getType() == EntityType.SHULKER || entity.getType() == EntityType.SKELETON_HORSE || entity.getType() == EntityType.SNIFFER || entity.getType() == EntityType.SNOWMAN || entity.getType() == EntityType.SQUID || entity.getType() == EntityType.STRIDER || entity.getType() == EntityType.TADPOLE || entity.getType() == EntityType.TRADER_LLAMA || entity.getType() == EntityType.TROPICAL_FISH || entity.getType() == EntityType.TURTLE || entity.getType() == EntityType.VILLAGER || entity.getType() == EntityType.WANDERING_TRADER || entity.getType() == EntityType.ZOMBIE_HORSE) {
             Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getModifiers().forEach(attributeModifier -> Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).removeModifier(attributeModifier));
 
-            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_health" , health, AttributeModifier.Operation.ADD_NUMBER));
+            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_health" , health, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
             entity.setHealth(Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue());
         }
 
         if(entity.getType() == EntityType.ELDER_GUARDIAN || entity.getType() == EntityType.WARDEN || entity.getType() == EntityType.WITHER) {
-            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_health" , health, AttributeModifier.Operation.ADD_NUMBER));
+            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_health" , health, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
             entity.setHealth(Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue());
 
             Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).getModifiers().forEach(attributeModifier -> Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).removeModifier(attributeModifier));
-            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_attack_damage" , bossAttack, AttributeModifier.Operation.ADD_NUMBER));
+            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_attack_damage" , bossAttack, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
         }
 
         if(entity.getType() == EntityType.ENDER_DRAGON) {
             Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getModifiers().forEach(attributeModifier -> Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).removeModifier(attributeModifier));
 
-            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_health" , health, AttributeModifier.Operation.ADD_NUMBER));
+            Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).addModifier(new AttributeModifier(UUID.randomUUID(), "custom_health" , health, AttributeModifier.Operation.MULTIPLY_SCALAR_1));
             entity.setHealth(Objects.requireNonNull(entity.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue());
         }
     }
