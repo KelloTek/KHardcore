@@ -10,6 +10,6 @@ commands:
     permission: khardcore.use.ritual
 permissions:
   khardcore.use.revive:
-    default: op
+    default: true
   khardcore.use.ritual:
-    default: op
+    default: true

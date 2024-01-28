@@ -1,5 +1,6 @@
 package fr.kellotek.khardcore;
 
+import fr.theskyblockman.skylayer.scoreboard.ScoreboardManagement;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -11,6 +12,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
 
@@ -21,6 +23,10 @@ public class GameHandler implements Listener {
         Player player = e.getPlayer();
 
         if (!KHardcore.instance.getUserConfig().contains(String.valueOf(player.getUniqueId()))){
+            KHardcore.instance.getUserConfig().set(player.getUniqueId() + ".locationX", player.getLocation().getX());
+            KHardcore.instance.getUserConfig().set(player.getUniqueId() + ".locationY", player.getLocation().getY());
+            KHardcore.instance.getUserConfig().set(player.getUniqueId() + ".locationZ", player.getLocation().getZ());
+            KHardcore.instance.getUserConfig().set(player.getUniqueId() + ".reviveAmount", 0);
             KHardcore.instance.getUserConfig().set(player.getUniqueId() + ".isDead", false);
         }
         try{
@@ -43,9 +49,9 @@ public class GameHandler implements Listener {
         Player player = e.getPlayer();
 
         if(player.getGameMode() == GameMode.SPECTATOR && KHardcore.instance.getUserConfig().getBoolean(player.getUniqueId() + ".isDead")){
-            e.setFormat(ChatColor.GRAY + "☠ " + player.getDisplayName() + " > " + e.getMessage());
+            e.setFormat(ChatColor.RED + "☠ " + ChatColor.GRAY + player.getDisplayName() + " » " + e.getMessage());
         } else {
-            e.setFormat(ChatColor.BLUE + player.getDisplayName() + ChatColor.GRAY + " > " + ChatColor.WHITE + e.getMessage());
+            e.setFormat(ChatColor.BLUE + player.getDisplayName() + ChatColor.GRAY + " » " + ChatColor.WHITE + e.getMessage());
         }
     }
 
@@ -54,12 +60,22 @@ public class GameHandler implements Listener {
         Player player = e.getEntity().getPlayer();
         assert player != null;
 
+        KHardcore.instance.getUserConfig().set(player.getUniqueId() + ".locationX", player.getLocation().getX());
+        KHardcore.instance.getUserConfig().set(player.getUniqueId() + ".locationY", player.getLocation().getY());
+        KHardcore.instance.getUserConfig().set(player.getUniqueId() + ".locationZ", player.getLocation().getZ());
         KHardcore.instance.getUserConfig().set(player.getUniqueId() + ".isDead", true);
         try {
             KHardcore.instance.saveUserConfig();
         } catch (IOException ioException) {
             throw new RuntimeException(ioException);
         }
+
+        new BukkitRunnable(){
+            @Override
+            public void run() {
+                ScoreboardManagement.updateScoreboard(player);
+            }
+        }.runTaskLater(KHardcore.instance, 1L);
 
         e.setDeathMessage(ChatColor.RED + "☠ " + ChatColor.GRAY + player.getDisplayName() + " is dead");
     }
